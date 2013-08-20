@@ -1,11 +1,12 @@
 ; tabsize = 8
-; Plazma by .nebula
+; Plazma by .nebula (June, 2001)
 ; This is my first 256b intro, so it is rather simple.
 
 		.model	tiny
 		.code
 		.386
 		org	100h
+
 start:
 		mov	al,13h
 		int	10h
@@ -18,11 +19,13 @@ start:
 		inc     dx
 		mov	cx,300h		
 		mov	al,62		; EAX=<Green=0,Blue=0,Red=0,temp=62>
+
 set_pal:
 		cmp	al,62
 		jb	okidoki
 		inc	ah
 		mov	al,62
+
 okidoki:				;		  \/---------------/\
 		ror	eax,8		; first run	Green->Blue->Red->temp
 		test	cl,1		
@@ -30,12 +33,14 @@ okidoki:				;		  \/---------------/\
 		ja	skip		; jump if CF!=0 && ZF!=0
 		out	dx,al
 		jmp	short continue_loop
+
 skip:
 		test	al,al
 		jnz	continue_loop
 		test	ah,ah
 		jz	continue_loop
 		sub	eax,01010100h
+
 continue_loop:
 		loop	set_pal
 		test	ah,ah
@@ -43,6 +48,7 @@ continue_loop:
 		mov	eax,3d3d3d00h
 		mov	cx,100h
 		jmp	short set_pal
+
 leave_set_pal:
 ;================================================================================================
 ;	Make a cosines lookup table using cos(x[k])=2*cos(span/steps)*cos(x[k-1])-cos(x[k-2])
@@ -54,6 +60,7 @@ leave_set_pal:
 		mov	eax,ebx
 		stosd
 		mov	cx,2046
+
 build_table_loop:
 		imul	ebx
 		shrd	eax,edx,23
