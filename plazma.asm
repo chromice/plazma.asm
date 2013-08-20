@@ -67,13 +67,13 @@ main_loop:
 ;================================================================================================
 ;	Drawing plazma 
 ;================================================================================================
-;x and y coordinates are stored on stack
-;
-;The pixel color is determined by this formula:
-;color(x,y)=32*{cos(c_a*x+c_b*p_time+c_c)+
-;		cos(c_d*x+c_e*p_time+c_f)+
-;		cos(c_g*y+c_h*p_time+c_i)+
-;		cos(c_j*y+c_k*p_time+c_l)+4}
+;	x and y coordinates are stored on stack
+;	
+;	The pixel color is determined by this formula:
+;	color(x,y)=32*{cos(c_a*x+c_b*p_time+c_c)+
+;			cos(c_d*x+c_e*p_time+c_f)+
+;			cos(c_g*y+c_h*p_time+c_i)+
+;			cos(c_j*y+c_k*p_time+c_l)+4}
 
 		xor	di,di
 		xor	ax,ax
